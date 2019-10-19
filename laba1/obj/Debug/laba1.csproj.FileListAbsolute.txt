@@ -1,5 +1,0 @@
-/Users/iyroglif/Projects/newlabs/laba1/bin/Debug/laba1.exe
-/Users/iyroglif/Projects/newlabs/laba1/bin/Debug/laba1.pdb
-/Users/iyroglif/Projects/newlabs/laba1/obj/Debug/laba1.csprojAssemblyReference.cache
-/Users/iyroglif/Projects/newlabs/laba1/obj/Debug/laba1.exe
-/Users/iyroglif/Projects/newlabs/laba1/obj/Debug/laba1.pdb

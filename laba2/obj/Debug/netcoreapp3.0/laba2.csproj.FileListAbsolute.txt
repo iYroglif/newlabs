@@ -1,0 +1,11 @@
+/Users/iyroglif/Projects/newlabs/laba2/bin/Debug/netcoreapp3.0/laba2
+/Users/iyroglif/Projects/newlabs/laba2/bin/Debug/netcoreapp3.0/laba2.deps.json
+/Users/iyroglif/Projects/newlabs/laba2/bin/Debug/netcoreapp3.0/laba2.runtimeconfig.json
+/Users/iyroglif/Projects/newlabs/laba2/bin/Debug/netcoreapp3.0/laba2.runtimeconfig.dev.json
+/Users/iyroglif/Projects/newlabs/laba2/bin/Debug/netcoreapp3.0/laba2.dll
+/Users/iyroglif/Projects/newlabs/laba2/bin/Debug/netcoreapp3.0/laba2.pdb
+/Users/iyroglif/Projects/newlabs/laba2/obj/Debug/netcoreapp3.0/laba2.csprojAssemblyReference.cache
+/Users/iyroglif/Projects/newlabs/laba2/obj/Debug/netcoreapp3.0/laba2.AssemblyInfoInputs.cache
+/Users/iyroglif/Projects/newlabs/laba2/obj/Debug/netcoreapp3.0/laba2.AssemblyInfo.cs
+/Users/iyroglif/Projects/newlabs/laba2/obj/Debug/netcoreapp3.0/laba2.dll
+/Users/iyroglif/Projects/newlabs/laba2/obj/Debug/netcoreapp3.0/laba2.pdb

@@ -1,0 +1,8 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "/Users/iyroglif/.dotnet/store/|arch|/|tfm|",
+      "/Users/iyroglif/.nuget/packages"
+    ]
+  }
+}

@@ -10,6 +10,7 @@ namespace laba2
     {
         static void Main(string[] args)
         {
+            Console.Title = "Терентьев Владислав ИУ5-33";
             Rectangle a = new Rectangle(4, 8);
             a.Print();
             Square b = new Square(5.5);
@@ -37,9 +38,10 @@ namespace laba2
             protected set { _area = value; }
         }
 
-        public abstract double CalcArea(); //Смысл делать virtual?
+        public abstract double CalcArea(); //Можно ли сделать abstract вместо virtual и зачем делать virtual?
+                                           //public virtual double CalcArea() { return Area; }
 
-        public virtual string ToString() { return _shape + " площадью " + _area.ToString(); }
+        public override string ToString() { return _shape + " площадью " + _area.ToString(); }
     }
 
     interface IPrint { void Print(); }
@@ -58,7 +60,7 @@ namespace laba2
             get { return _height; }
             private set
             {
-                if (value < 0) { throw new Exception /*Console.WriteLine*/("Высота не может быть отрицательной"); }
+                if (value < 0) { throw new Exception("Высота не может быть отрицательной"); }
                 else { _height = value; }
             }
         }
@@ -68,7 +70,7 @@ namespace laba2
             get { return _weight; }
             private set
             {
-                if (value < 0) { throw new Exception /*Console.WriteLine*/("Ширина не может быть отрицательной"); }
+                if (value < 0) { throw new Exception("Ширина не может быть отрицательной"); }
                 else { _weight = value; }
             }
         }
@@ -89,7 +91,7 @@ namespace laba2
     {
         public Square(double leng) : base(leng, leng) { Shape = "Квадрат"; }
 
-        public override string ToString() { return base.ToString() + " и стороной " + Height; } //Как обратиться к сАмому родительскому классу?
+        public override string ToString() { return base.ToString() + " (стороной " + Height + ")"; } //Можно ли как то обратиться к сАмому родительскому классу?
     }
 
     class Circle : GeomFigure, IPrint
@@ -105,7 +107,7 @@ namespace laba2
             get { return _radius; }
             private set
             {
-                if (value < 0) { throw new Exception/*Console.WriteLine*/("Радиус не может быть отрицательным"); }
+                if (value < 0) { throw new Exception("Радиус не может быть отрицательным"); }
                 else { _radius = value; }
             }
         }

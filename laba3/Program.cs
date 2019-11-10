@@ -12,57 +12,72 @@ namespace laba3
     {
         static void Main(string[] args)
         {
-            Rectangle rect = new Rectangle(5, 4);
+            Console.Title = "Терентьев Владислав ИУ5-33";
+            Rectangle rectangle = new Rectangle(5, 4);
             Square square = new Square(5);
             Circle circle = new Circle(5);
-            Console.WriteLine("\nArrayList");
 
-            ArrayList al = new ArrayList();
-            al.Add(circle);
-            al.Add(rect);
-            al.Add(square);
-            foreach (var x in al) Console.WriteLine(x);
-            Console.WriteLine("\nArrayList - сортировка");
-            al.Sort();
-            foreach (var x in al) Console.WriteLine(x);
+            Console.WriteLine("ArrayList");
+            ArrayList collection = new ArrayList();
+            collection.Add(circle);
+            collection.Add(rectangle);
+            collection.Add(square);
+            foreach (object o in collection)
+            {
+                Console.WriteLine(o);
+            }
+
             Console.WriteLine("\nList<Figure>");
-
-            List<GeomFigure> fl = new List<GeomFigure>();
-            fl.Add(circle);
-            fl.Add(rect);
-            fl.Add(square);
-            foreach (var x in fl) Console.WriteLine(x);
+            List<GeomFigure> coll2 = new List<GeomFigure>();
+            coll2.Add(circle);
+            coll2.Add(rectangle);
+            coll2.Add(square);
+            foreach (object o in coll2)
+            {
+                Console.WriteLine(o);
+            }
             Console.WriteLine("\nList<Figure> - сортировка");
-            fl.Sort();
-            foreach (var x in fl) Console.WriteLine(x);
-            Console.WriteLine("\nМатрица");
+            coll2.Sort();
+            foreach (object o in coll2)
+            {
+                Console.WriteLine(o);
+            }
 
+            //
+            Console.WriteLine("\nМатрица");
             Matrix3D<GeomFigure> cube = new Matrix3D<GeomFigure>(3, 3, 3, null);
-            cube[0, 0, 0] = rect;
+            cube[0, 0, 0] = rectangle;
             cube[1, 1, 1] = square;
             cube[2, 2, 2] = circle;
             Console.WriteLine(cube.ToString());
-            Console.WriteLine("\nСписок");
+            //
 
+            Console.WriteLine("\nСписок");
             SimpleList<GeomFigure> list = new SimpleList<GeomFigure>();
             list.Add(square);
-            list.Add(rect);
+            list.Add(rectangle);
             list.Add(circle);
-            foreach (var x in list) Console.WriteLine(x);
+            foreach (var o in list)
+            {
+                Console.WriteLine(o);
+            }
             list.Sort();
             Console.WriteLine("\nСортировка списка");
-            foreach (var x in list) Console.WriteLine(x);
+            foreach (var o in list)
+            {
+                Console.WriteLine(o);
+            }
+
             Console.WriteLine("\nСтек");
             SimpleStack<GeomFigure> stack = new SimpleStack<GeomFigure>();
-            stack.Push(rect);
+            stack.Push(rectangle);
             stack.Push(square);
             stack.Push(circle);
             while (stack.Count > 0)
             {
-                GeomFigure f = stack.Pop();
-                Console.WriteLine(f);
+                GeomFigure tmp = stack.Pop();
+                Console.WriteLine(tmp);
             }
-
             Console.ReadKey();
         }
     }
@@ -84,7 +99,8 @@ namespace laba3
             protected set { _area = value; }
         }
 
-        public abstract double CalcArea(); //Смысл делать virtual?
+        public abstract double CalcArea(); //Можно ли сделать abstract вместо virtual и зачем делать virtual?
+                                           //public virtual double CalcArea() { return Area; }
 
         public int CompareTo(object o)
         {
@@ -94,7 +110,7 @@ namespace laba3
             else return 1;
         }
 
-        public virtual string ToString() { return _shape + " плошадью " + _area.ToString(); }
+        public override string ToString() { return _shape + " плошадью " + _area.ToString(); }
     }
 
     interface IPrint { void Print(); }
@@ -144,7 +160,7 @@ namespace laba3
     {
         public Square(double leng) : base(leng, leng) { Shape = "Квадрат"; }
 
-        public override string ToString() { return base.ToString() + " и стороной " + Height; } //Как обратиться к сАмому родительскому классу?
+        public override string ToString() { return base.ToString() + " (стороной " + Height + ")"; } //Можно ли как то обратиться к сАмому родительскому классу?
     }
 
     class Circle : GeomFigure, IPrint
@@ -178,28 +194,12 @@ namespace laba3
 
     public class Matrix3D<T>
     {
-        /// <summary>
-        /// Словарь для хранения значений
-        /// </summary>
         Dictionary<string, T> _matrix = new Dictionary<string, T>();
-        /// <summary>
-        /// Количество элементов по горизонтали (максимальное количество столбцов)
-        /// </summary>
         int maxX;
-        /// <summary>
-        /// Количество элементов по вертикали (максимальное количество строк)
-        /// </summary>
         int maxY;
-        /// <summary>
-        /// Пустой элемент, который возвращается если элемент с нужными координатами не был задан
-        /// </summary>
-        ///+++++++++++++++++++++++++++++++++++++ 
         int maxZ;
-        ///+++++++++++++++++++++++++++++++++++++
         T nullElement;
-        /// <summary>
-        /// Конструктор
-        /// </summary>
+
         public Matrix3D(int px, int py, int pz, T nullElementParam)
         {
             this.maxX = px;
@@ -207,9 +207,7 @@ namespace laba3
             this.maxZ = pz;
             this.nullElement = nullElementParam;
         }
-        /// <summary>
-        /// Индексатор для доступа к данных
-        /// </summary>
+
         public T this[int x, int y, int z]
         {
             get
@@ -226,28 +224,18 @@ namespace laba3
                 this._matrix.Add(key, value);
             }
         }
-        /// <summary>
-        /// Проверка границ
-        /// </summary>
+
         void CheckBounds(int x, int y, int z)
         {
             if (x < 0 || x >= this.maxX) throw new Exception("x=" + x + " выходит за границы");
             if (y < 0 || y >= this.maxY) throw new Exception("y=" + y + " выходит за границы");
             if (z < 0 || z >= this.maxZ) throw new Exception("z=" + z + " выходит за границы");
         }
-        /// <summary>
-        /// Формирование ключа
-        /// </summary>
+
         string DictKey(int x, int y, int z) { return x.ToString() + "_" + y.ToString() + "_" + z.ToString(); }
-        /// <summary>
-        /// Приведение к строке
-        /// </summary>
-        /// <returns></returns>
+
         public override string ToString()
         {
-            //Класс StringBuilder используется для построения длинных строк
-            //Это увеличивает производительность по сравнению с созданием и склеиванием
-            //большого количества обычных строк
             StringBuilder b = new StringBuilder();
             for (int k = 0; k < this.maxZ; k++)
             {
@@ -256,9 +244,9 @@ namespace laba3
                     b.Append("[");
                     for (int i = 0; i < this.maxX; i++)
                     {
-                        if (i > 0) b.Append("\t\t");
+                        if (i > 0) b.Append("\t\t\t");
                         if (this[i, j, k] == null) b.Append("---------------");
-                        else b.Append(this[i, j, k].ToString());
+                        else b.Append(this[i, j, k].ToString()); //Как вывести просто полное имя объекта?
                     }
                     b.Append("]\n");
                 }
@@ -268,135 +256,91 @@ namespace laba3
         }
     }
 
-    /// <summary>
-    /// Элемент списка
-    /// </summary>
     public class SimpleListItem<T>
     {
-        /// <summary>
-        /// Данные
-        /// </summary>
         public T data { get; set; }
-        /// <summary>
-        /// Следующий элемент
-        /// </summary>
+
         public SimpleListItem<T> next { get; set; }
-        ///конструктор
+
         public SimpleListItem(T param)
         {
             this.data = param;
         }
     }
 
-    /// <summary>
-    /// Список
-    /// </summary>
     public class SimpleList<T> : IEnumerable<T>
     where T : IComparable
     {
-        /// <summary>
-        /// Первый элемент списка
-        /// </summary>
         protected SimpleListItem<T> first = null;
-        /// <summary>
-        /// Последний элемент списка
-        /// </summary>
+
         protected SimpleListItem<T> last = null;
-        /// <summary>
-        /// Количество элементов
-        /// </summary>
+
         public int Count
         {
             get { return _count; }
             protected set { _count = value; }
         }
         int _count;
-        /// <summary>
-        /// Добавление элемента
-        /// </summary>
-        /// <param name="element"></param>
+
         public void Add(T element)
         {
             SimpleListItem<T> newItem = new SimpleListItem<T>(element);
             this.Count++;
-            //Добавление первого элемента
             if (last == null)
             {
                 this.first = newItem;
                 this.last = newItem;
             }
-            //Добавление следующих элементов
             else
             {
-                //Присоединение элемента к цепочке
                 this.last.next = newItem;
-                //Просоединенный элемент считается последним
                 this.last = newItem;
             }
         }
-        /// <summary>
-        /// Чтение контейнера с заданным номером
-        /// </summary>
+
         public SimpleListItem<T> GetItem(int number)
         {
             if ((number < 0) || (number >= this.Count))
             {
-                //Можно создать собственный класс исключения
                 throw new Exception("Выход за границу индекса");
             }
             SimpleListItem<T> current = this.first;
             int i = 0;
-            //Пропускаем нужное количество элементов
             while (i < number)
             {
-                //Переход к следующему элементу
                 current = current.next;
-                //Увеличение счетчика
                 i++;
             }
             return current;
         }
-        /// <summary>
-        /// Чтение элемента с заданным номером
-        /// </summary>
+
         public T Get(int number)
         {
             return GetItem(number).data;
         }
-        /// <summary>
-        /// Для перебора коллекции
-        /// </summary>
+
         public IEnumerator<T> GetEnumerator()
         {
             SimpleListItem<T> current = this.first;
-            //Перебор элементов
+
             while (current != null)
             {
-                //Возврат текущего значения
                 yield return current.data;
-                //Переход к следующему элементу
                 current = current.next;
             }
         }
-        //Реализация обощенного IEnumerator<T> требует реализации необобщенного интерфейса
-        //Данный метод добавляется автоматически при реализации интерфейса
+
         System.Collections.IEnumerator
         System.Collections.IEnumerable.GetEnumerator()
         {
             return GetEnumerator();
         }
-        /// <summary>
-        /// Cортировка
-        /// </summary>
+
         public void Sort()
         {
             Sort(0, this.Count - 1);
         }
-        /// <summary>
-        /// Реализация алгоритма быстрой сортировки
-        /// </summary>
-        /// <param name="low"></param>
-        /// <param name="high"></param>
+
         private void Sort(int low, int high)
         {
             int i = low;
@@ -415,9 +359,7 @@ namespace laba3
             if (low < j) Sort(low, j);
             if (i < high) Sort(i, high);
         }
-        /// <summary>
-        /// Вспомогательный метод для обмена элементов при сортировке
-        /// </summary>
+
         private void Swap(int i, int j)
         {
             SimpleListItem<T> ci = GetItem(i);

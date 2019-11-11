@@ -27,7 +27,7 @@ namespace laba3
                 Console.WriteLine(o);
             }
 
-            Console.WriteLine("\nList<Figure>");
+            Console.WriteLine("\nList<GeomFigure>");
             List<GeomFigure> coll2 = new List<GeomFigure>();
             coll2.Add(circle);
             coll2.Add(rectangle);
@@ -36,7 +36,7 @@ namespace laba3
             {
                 Console.WriteLine(o);
             }
-            Console.WriteLine("\nList<Figure> - сортировка");
+            Console.WriteLine("\nList<GeomFigure> - сортировка");
             coll2.Sort();
             foreach (object o in coll2)
             {
@@ -46,9 +46,9 @@ namespace laba3
             //
             Console.WriteLine("\nМатрица");
             Matrix3D<GeomFigure> cube = new Matrix3D<GeomFigure>(3, 3, 3, null);
-            cube[0, 0, 0] = rectangle;
+            cube[0, 0, 2] = rectangle;
             cube[1, 1, 1] = square;
-            cube[2, 2, 2] = circle;
+            cube[2, 2, 0] = circle;
             Console.WriteLine(cube.ToString());
             //
 
@@ -110,7 +110,7 @@ namespace laba3
             else return 1;
         }
 
-        public override string ToString() { return _shape + " плошадью " + _area.ToString(); }
+        public override string ToString() { return _shape + " плошадью " + _area.ToString("0.00"); }
     }
 
     interface IPrint { void Print(); }
@@ -151,7 +151,7 @@ namespace laba3
             Area = CalcArea();
         }
 
-        public override string ToString() { return base.ToString() + ", высотой " + _height + " и шириной " + _weight; }
+        //public override string ToString() { return base.ToString() + ", высотой " + _height + " и шириной " + _weight; }
 
         public void Print() { Console.WriteLine(ToString()); }
     }
@@ -160,7 +160,7 @@ namespace laba3
     {
         public Square(double leng) : base(leng, leng) { Shape = "Квадрат"; }
 
-        public override string ToString() { return base.ToString() + " (стороной " + Height + ")"; } //Можно ли как то обратиться к сАмому родительскому классу?
+        //public override string ToString() { return base.ToString() + " (стороной " + Height + ")"; } //Можно ли как то обратиться к сАмому родительскому классу?
     }
 
     class Circle : GeomFigure, IPrint
@@ -187,7 +187,7 @@ namespace laba3
             Area = CalcArea();
         }
 
-        public override string ToString() { return base.ToString() + " и радиусом " + _radius; }
+        //public override string ToString() { return base.ToString() + " и радиусом " + _radius; }
 
         public void Print() { Console.WriteLine(ToString()); }
     }
@@ -244,9 +244,9 @@ namespace laba3
                     b.Append("[");
                     for (int i = 0; i < this.maxX; i++)
                     {
-                        if (i > 0) b.Append("\t\t\t");
-                        if (this[i, j, k] == null) b.Append("---------------");
-                        else b.Append(this[i, j, k].ToString()); //Как вывести просто полное имя объекта?
+                        if (i > 0) b.Append("\t");
+                        if (this[i, j, k] == null) b.Append("----------------------------");
+                        else b.Append($"{this[i, j, k].ToString(), 27}");
                     }
                     b.Append("]\n");
                 }

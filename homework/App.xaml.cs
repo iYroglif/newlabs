@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace laba5_wpf
+namespace homework
 {
     /// <summary>
     /// Логика взаимодействия для App.xaml

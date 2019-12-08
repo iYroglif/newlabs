@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace laba3
 {
@@ -202,10 +200,10 @@ namespace laba3
 
         public Matrix3D(int px, int py, int pz, T nullElementParam)
         {
-            this.maxX = px;
-            this.maxY = py;
-            this.maxZ = pz;
-            this.nullElement = nullElementParam;
+            maxX = px;
+            maxY = py;
+            maxZ = pz;
+            nullElement = nullElementParam;
         }
 
         public T this[int x, int y, int z]
@@ -214,22 +212,22 @@ namespace laba3
             {
                 CheckBounds(x, y, z);
                 string key = DictKey(x, y, z);
-                if (this._matrix.ContainsKey(key)) { return this._matrix[key]; }
-                else { return this.nullElement; }
+                if (_matrix.ContainsKey(key)) { return _matrix[key]; }
+                else { return nullElement; }
             }
             set
             {
                 CheckBounds(x, y, z);
                 string key = DictKey(x, y, z);
-                this._matrix.Add(key, value);
+                _matrix.Add(key, value);
             }
         }
 
         void CheckBounds(int x, int y, int z)
         {
-            if (x < 0 || x >= this.maxX) throw new Exception("x=" + x + " выходит за границы");
-            if (y < 0 || y >= this.maxY) throw new Exception("y=" + y + " выходит за границы");
-            if (z < 0 || z >= this.maxZ) throw new Exception("z=" + z + " выходит за границы");
+            if (x < 0 || x >= maxX) throw new Exception("x=" + x + " выходит за границы");
+            if (y < 0 || y >= maxY) throw new Exception("y=" + y + " выходит за границы");
+            if (z < 0 || z >= maxZ) throw new Exception("z=" + z + " выходит за границы");
         }
 
         string DictKey(int x, int y, int z) { return x.ToString() + "_" + y.ToString() + "_" + z.ToString(); }
@@ -237,12 +235,12 @@ namespace laba3
         public override string ToString()
         {
             StringBuilder b = new StringBuilder();
-            for (int k = 0; k < this.maxZ; k++)
+            for (int k = 0; k < maxZ; k++)
             {
-                for (int j = 0; j < this.maxY; j++)
+                for (int j = 0; j < maxY; j++)
                 {
                     b.Append("[");
-                    for (int i = 0; i < this.maxX; i++)
+                    for (int i = 0; i < maxX; i++)
                     {
                         if (i > 0) b.Append("\t");
                         if (this[i, j, k] == null) b.Append("----------------------------");
@@ -264,7 +262,7 @@ namespace laba3
 
         public SimpleListItem(T param)
         {
-            this.data = param;
+            data = param;
         }
     }
 
@@ -285,26 +283,26 @@ namespace laba3
         public void Add(T element)
         {
             SimpleListItem<T> newItem = new SimpleListItem<T>(element);
-            this.Count++;
+            Count++;
             if (last == null)
             {
-                this.first = newItem;
-                this.last = newItem;
+                first = newItem;
+                last = newItem;
             }
             else
             {
-                this.last.next = newItem;
-                this.last = newItem;
+                last.next = newItem;
+                last = newItem;
             }
         }
 
         public SimpleListItem<T> GetItem(int number)
         {
-            if ((number < 0) || (number >= this.Count))
+            if ((number < 0) || (number >= Count))
             {
                 throw new Exception("Выход за границу индекса");
             }
-            SimpleListItem<T> current = this.first;
+            SimpleListItem<T> current = first;
             int i = 0;
             while (i < number)
             {
@@ -321,7 +319,7 @@ namespace laba3
 
         public IEnumerator<T> GetEnumerator()
         {
-            SimpleListItem<T> current = this.first;
+            SimpleListItem<T> current = first;
 
             while (current != null)
             {
@@ -330,15 +328,15 @@ namespace laba3
             }
         }
 
-        System.Collections.IEnumerator
-        System.Collections.IEnumerable.GetEnumerator()
+        IEnumerator
+        IEnumerable.GetEnumerator()
         {
             return GetEnumerator();
         }
 
         public void Sort()
         {
-            Sort(0, this.Count - 1);
+            Sort(0, Count - 1);
         }
 
         private void Sort(int low, int high)
@@ -381,11 +379,11 @@ namespace laba3
         public void Push(T element)
         {
             SimpleListItem<T> newItem = new SimpleListItem<T>(element);
-            this.Count++;
+            Count++;
             if (last == null)
             {
-                this.first = newItem;
-                this.last = newItem;
+                first = newItem;
+                last = newItem;
             }
             else
             {

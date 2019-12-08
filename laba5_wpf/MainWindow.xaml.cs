@@ -1,17 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Microsoft.Win32;
 using System.Diagnostics;
 using System.IO;
@@ -37,7 +26,7 @@ namespace laba5_wpf
             {
                 Filter = "Текстовые Файлы|*.txt"
             };
-            Nullable<bool> result = fd.ShowDialog();
+            bool? result = fd.ShowDialog();
             if (result == true)
             {
                 Stopwatch timer = new Stopwatch();
@@ -54,8 +43,8 @@ namespace laba5_wpf
                     }
                 }
                 timer.Stop();
-                this.LabelTimer.Content = timer.Elapsed.ToString();
-                this.TextBoxCountWords.Text = words.Count.ToString();
+                LabelTimer.Content = timer.Elapsed.ToString();
+                TextBoxCountWords.Text = words.Count.ToString();
             }
             else
             {
@@ -65,10 +54,10 @@ namespace laba5_wpf
 
         private void ButtonCalcDistance_Click(object sender, RoutedEventArgs e)
         {
-            string currentWord = this.TextBoxCurrentWord.Text.Trim();
+            string currentWord = TextBoxCurrentWord.Text.Trim();
             if (!string.IsNullOrWhiteSpace(currentWord) && words.Count > 0)
             {
-                if (!int.TryParse(this.TextBoxMaxDistance.Text.Trim(), out int maxDistance))
+                if (!int.TryParse(TextBoxMaxDistance.Text.Trim(), out int maxDistance))
                 {
                     MessageBox.Show("Введите максимальное расстояние");
                     return;
@@ -90,8 +79,8 @@ namespace laba5_wpf
                     }
                 }
                 timer.Stop();
-                this.LabelTimeCalc.Content = timer.Elapsed.ToString();
-                this.ListBoxResult.ItemsSource = tempList;
+                LabelTimeCalc.Content = timer.Elapsed.ToString();
+                ListBoxResult.ItemsSource = tempList;
             }
             else
             {

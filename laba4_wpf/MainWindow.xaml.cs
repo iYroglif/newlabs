@@ -1,17 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Microsoft.Win32;
 using System.Diagnostics;
 using System.IO;
@@ -36,7 +25,7 @@ namespace laba4_wpf
             {
                 Filter = "Текстовые Файлы|*.txt"
             };
-            Nullable<bool> result = fd.ShowDialog();
+            bool? result = fd.ShowDialog();
             if (result == true)
             {
                 Stopwatch timer = new Stopwatch();
@@ -53,8 +42,8 @@ namespace laba4_wpf
                     }
                 }
                 timer.Stop();
-                this.LabelTimer.Content = timer.Elapsed.ToString();
-                this.TextBoxCountWords.Text = words.Count.ToString();
+                LabelTimer.Content = timer.Elapsed.ToString();
+                TextBoxCountWords.Text = words.Count.ToString();
             }
             else
             {
@@ -64,7 +53,7 @@ namespace laba4_wpf
 
         private void ButtonSearchWord_Click(object sender, RoutedEventArgs e)
         {
-            string wordSearch = this.TextBoxSearchWord.Text.Trim();
+            string wordSearch = TextBoxSearchWord.Text.Trim();
             if (!string.IsNullOrWhiteSpace(wordSearch) && words.Count > 0)
             {
                 string wordUpper = wordSearch.ToUpper();
@@ -79,8 +68,8 @@ namespace laba4_wpf
                     }
                 }
                 timer.Stop();
-                this.LabelTimeSearch.Content = timer.Elapsed.ToString();
-                this.ListBoxResult.ItemsSource=tempList;
+                LabelTimeSearch.Content = timer.Elapsed.ToString();
+                ListBoxResult.ItemsSource=tempList;
             }
             else
             {

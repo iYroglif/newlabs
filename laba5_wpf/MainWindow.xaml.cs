@@ -63,29 +63,39 @@ namespace laba5_wpf
             }
         }
 
-        private void ButtonSearchWord_Click(object sender, RoutedEventArgs e)
+        private void ButtonCalcDistance_Click(object sender, RoutedEventArgs e)
         {
-            string wordSearch = this.TextBoxSearchWord.Text.Trim();
-            if (!string.IsNullOrWhiteSpace(wordSearch) && words.Count > 0)
+            string currentWord = this.TextBoxCurrentWord.Text.Trim();
+            if (!string.IsNullOrWhiteSpace(currentWord) && words.Count > 0)
             {
-                string wordUpper = wordSearch.ToUpper();
+                if (!int.TryParse(this.TextBoxMaxDistance.Text.Trim(), out int maxDistance))
+                {
+                    MessageBox.Show("Введите максимальное расстояние");
+                    return;
+                }
+                if (maxDistance < 1 || maxDistance > 5)
+                {
+                    MessageBox.Show("Максимальное расстояние должно быть в диапазоне от 1 до 5");
+                    return;
+                }
                 List<string> tempList = new List<string>();
                 Stopwatch timer = new Stopwatch();
                 timer.Start();
                 foreach (string str in words)
                 {
-                    if (str.ToUpper().Contains(wordUpper))
+                    int distance = LevenshteinDistance.Distance(str, currentWord);
+                    if (distance <= maxDistance)
                     {
-                        tempList.Add(str);
+                        tempList.Add(str + " (расстояние: " + distance + ")");
                     }
                 }
                 timer.Stop();
-                this.LabelTimeSearch.Content = timer.Elapsed.ToString();
+                this.LabelTimeCalc.Content = timer.Elapsed.ToString();
                 this.ListBoxResult.ItemsSource = tempList;
             }
             else
             {
-                MessageBox.Show("Выберите файл и введите слово для поиска");
+                MessageBox.Show("Выберите файл и введите слово для вычисления расстояния");
             }
         }
     }

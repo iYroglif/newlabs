@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Windows;
 using Microsoft.Win32;
 using System.Diagnostics;
@@ -44,7 +43,7 @@ namespace laba5_wpf
                 }
                 timer.Stop();
                 LabelTimer.Content = timer.Elapsed.ToString();
-                TextBoxCountWords.Text = words.Count.ToString();
+                LabelCountWords.Content = words.Count.ToString();
             }
             else
             {

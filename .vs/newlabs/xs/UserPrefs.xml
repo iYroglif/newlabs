@@ -1,10 +1,9 @@
 ﻿<Properties StartupConfiguration="{629E2BFC-BEB3-4692-85D6-A627DD7DC08C}|Default">
   <MonoDevelop.Ide.ItemProperties.laba1 PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="laba3/Program.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="laba4_wpf/MainWindow.xaml">
     <Files>
-      <File FileName="laba1/Program.cs" Line="8" Column="2" />
-      <File FileName="laba2/Program.cs" />
-      <File FileName="laba3/Program.cs" Line="128" Column="10" />
+      <File FileName="laba4_wpf/MainWindow.xaml.cs" Line="1" Column="1" />
+      <File FileName="laba4_wpf/MainWindow.xaml" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -12,8 +11,9 @@
           <Node name="newlabs" expanded="True">
             <Node name="laba1" expanded="True" />
             <Node name="laba2" expanded="True" />
-            <Node name="laba3" expanded="True">
-              <Node name="Program.cs" selected="True" />
+            <Node name="laba3" expanded="True" />
+            <Node name="laba4_wpf" expanded="True">
+              <Node name="MainWindow.xaml" expanded="True" selected="True" />
             </Node>
           </Node>
         </State>

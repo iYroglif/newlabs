@@ -5,19 +5,45 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:homework"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Терентьев Владислав ИУ5-33" Height="450" Width="800">
     <Grid>
-        <Button x:Name="ButtonLoadFile" Content="ButtonLoadFile" HorizontalAlignment="Left" Margin="28,23,0,0" VerticalAlignment="Top" Width="75" Click="ButtonLoadFile_Click"/>
-        <TextBox x:Name="TextBoxCountWords" HorizontalAlignment="Left" Height="23" Margin="146,61,0,0" TextWrapping="Wrap" Text="TextBoxCountWords" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="TextBoxCurrentWord" HorizontalAlignment="Left" Height="23" Margin="320,106,0,0" TextWrapping="Wrap" Text="TextBoxCurrentWord" VerticalAlignment="Top" Width="120"/>
-        <Button x:Name="ButtonSearchWord" Content="ButtonSearchWord" HorizontalAlignment="Left" Margin="95,139,0,0" VerticalAlignment="Top" Width="133" Height="39" Click="ButtonSearchWord_Click"/>
-        <ListBox x:Name="ListBoxResult" HorizontalAlignment="Left" Height="100" Margin="250,285,0,0" VerticalAlignment="Top" Width="326" Grid.RowSpan="2"/>
-        <Label x:Name="LabelTimeSearch" Content="LabelTimeSearch" HorizontalAlignment="Left" Margin="250,146,0,0" VerticalAlignment="Top" Width="143"/>
-        <Label x:Name="LabelTimer" Content="LabelTimer" HorizontalAlignment="Left" Margin="146,20,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.436,-0.932"/>
-        <TextBox x:Name="TextBoxMaxDistance" HorizontalAlignment="Left" Height="23" Margin="250,187,0,0" TextWrapping="Wrap" Text="TextBoxMaxDistance" VerticalAlignment="Top" Width="120"/>
-        <Button x:Name="ButtonCalcDistance" Content="ButtonCalcDistance" HorizontalAlignment="Left" Margin="95,230,0,0" VerticalAlignment="Top" Width="133" Height="39" Click="ButtonCalcDistance_Click"/>
-        <Label x:Name="LabelTimeCalc" Content="LabelTimeCalc" HorizontalAlignment="Left" Margin="250,237,0,0" VerticalAlignment="Top" Width="143" RenderTransformOrigin="-0.032,0.707"/>
-        <TextBox x:Name="TextBoxThreadCount" HorizontalAlignment="Left" Height="23" Margin="424,187,0,0" TextWrapping="Wrap" Text="TextBoxThreadCount" VerticalAlignment="Top" Width="120"/>
-        <Label x:Name="LabelThreadCount" Content="LabelThreadCount" HorizontalAlignment="Left" Margin="614,187,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.191,-0.404"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25"></RowDefinition>
+            <RowDefinition Height="25"></RowDefinition>
+            <RowDefinition Height="35"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="25"></RowDefinition>
+            <RowDefinition Height="25"></RowDefinition>
+            <RowDefinition Height="25"></RowDefinition>
+            <RowDefinition Height="25"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"></ColumnDefinition>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Button x:Name="ButtonLoadFile" Content="Чтение из файла" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="120" Height="30" Click="ButtonLoadFile_Click"/>
+        <Label x:Name="LabelCountWords" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <TextBox x:Name="TextBoxCurrentWord" TextWrapping="Wrap" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" Width="280" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <Button x:Name="ButtonSearchWord" Content="Четкий поиск" Grid.Column="0" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" Width="120" Height="30" Click="ButtonSearchWord_Click"/>
+        <ListBox x:Name="ListBoxResult" Grid.Column="0" Grid.Row="8" Grid.ColumnSpan="3" Margin="10"/>
+        <Label x:Name="LabelTimeSearch" Grid.Column="2" Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <Label x:Name="LabelTimer" Grid.Column="2" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <TextBox x:Name="TextBoxMaxDistance" TextWrapping="Wrap" Grid.Column="2" Grid.Row="4" Width="35" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <Button x:Name="ButtonCalcDistance" Grid.Column="0" Grid.Row="4" Grid.RowSpan="4" HorizontalAlignment="Center" VerticalAlignment="Center" Width="120" Height="60" Click="ButtonCalcDistance_Click">
+            <TextBlock>Параллельный<LineBreak/>нечеткий поиск</TextBlock>
+        </Button>
+        <Label x:Name="LabelTimeCalc" Grid.Column="2" Grid.Row="7" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <TextBox x:Name="TextBoxThreadCount" TextWrapping="Wrap" Grid.Column="2" Grid.Row="5" Width="70" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <Label x:Name="LabelThreadCount" Grid.Column="2" Grid.Row="6" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <Label Content="Время чтения из файла: " Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Label Content="Количество уникальных слов в файле: " Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Label Content="Слово для поиска: " Grid.Column="0" Grid.Row="2"  HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Label Content="Время нечеткого поиска: " Grid.Column="1" Grid.Row="7" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Label Content="Время четкого поиска: " Grid.Column="1" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Label Content="Максимальное расстояние для нечеткого поиска: " Grid.Column="1" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Label Content="Количество потоков: " Grid.Column="1" Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Label Content="Вычисленное количество потоков: " Grid.Column="1" Grid.Row="6" HorizontalAlignment="Center" VerticalAlignment="Center"/>
     </Grid>
 </Window>

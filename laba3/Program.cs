@@ -82,14 +82,9 @@ namespace laba3
 
     abstract class GeomFigure : IComparable
     {
-        string _shape;
         double _area;
 
-        public string Shape
-        {
-            get { return _shape; }
-            protected set { _shape = value; }
-        }
+        public string Shape { get; protected set; }
 
         public double Area
         {
@@ -108,7 +103,7 @@ namespace laba3
             else return 1;
         }
 
-        public override string ToString() { return _shape + " плошадью " + _area.ToString("0.00"); }
+        public override string ToString() { return Shape + " плошадью " + _area.ToString("0.00"); }
     }
 
     interface IPrint { void Print(); }
@@ -273,12 +268,7 @@ namespace laba3
 
         protected SimpleListItem<T> last = null;
 
-        public int Count
-        {
-            get { return _count; }
-            protected set { _count = value; }
-        }
-        int _count;
+        public int Count { get; protected set; }
 
         public void Add(T element)
         {

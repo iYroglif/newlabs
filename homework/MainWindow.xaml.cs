@@ -123,7 +123,7 @@ namespace homework
                 }
                 timer.Stop();
                 LabelTimer.Content = timer.Elapsed.ToString();
-                TextBoxCountWords.Text = words.Count.ToString();
+                LabelCountWords.Content = words.Count.ToString();
             }
             else
             {

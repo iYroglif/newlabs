@@ -19,14 +19,9 @@ namespace laba2
 
     abstract class GeomFigure
     {
-        string _shape;
         double _area;
 
-        public string Shape
-        {
-            get { return _shape; }
-            protected set { _shape = value; }
-        }
+        public string Shape { get; protected set; }
 
         public double Area
         {
@@ -37,7 +32,7 @@ namespace laba2
         public abstract double CalcArea(); //Можно ли сделать abstract вместо virtual и зачем делать virtual?
                                            //public virtual double CalcArea() { return Area; }
 
-        public override string ToString() { return _shape + " площадью " + _area.ToString(); }
+        public override string ToString() { return Shape + " площадью " + _area.ToString(); }
     }
 
     interface IPrint { void Print(); }

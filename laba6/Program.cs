@@ -26,8 +26,18 @@ namespace laba6
         {
             return "Стоимость билета на кино '" + name + "' в данный момент равняется " + basecost * 1.0 + " рублей.";
         }
-
+        
+        private static string Stock(string name, int basecost)
+        {
+            return "Стоимость билета на кино '" + name + "' по скидочному купону равняется " + basecost * 0.5 + " рублей.";
+        }
+        
         private static void ShowMassage(Cost CostParam, string NameParam, int BasecostParam)
+        {
+            Console.WriteLine(CostParam(NameParam, BasecostParam));
+        }
+
+        private static void ShowMassageFunc(Func<string, int, string> CostParam, string NameParam, int BasecostParam)
         {
             Console.WriteLine(CostParam(NameParam, BasecostParam));
         }
@@ -48,6 +58,7 @@ namespace laba6
             }
             ShowMassage(cst, "Матрица 4", 200);
             ShowMassage((name, basecost) => "Стоимость детского билета на кино '" + name + "' равняется " + basecost * 0.5 + " рублей.", "Матрица 4", 200);
+            ShowMassageFunc(Stock, "Матрица 4", 200);
             Console.ReadKey();
         }
     }

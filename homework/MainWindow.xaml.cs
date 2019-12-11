@@ -5,6 +5,8 @@ using Microsoft.Win32;
 using System.Diagnostics;
 using System.IO;
 using laba5_lib;
+using System.Text;
+using System;
 
 namespace homework
 {
@@ -186,13 +188,14 @@ namespace homework
                 for (int i = 0; i < count; i++)
                 {
                     List<string> tempTaskList = words.GetRange(arrayDivList[i].Min, arrayDivList[i].Max - arrayDivList[i].Min);
-                    tasks[i] = new Task<List<ParallelSearchResult>>( ArrayThreadTask, 
-                        new ParallelSearchThreadParam() {
-                         TempList = tempTaskList,
-                         MaxDist = maxDistance,
-                         ThreadNum = i,
-                         WordPattern = currentWord
-                     });
+                    tasks[i] = new Task<List<ParallelSearchResult>>(ArrayThreadTask,
+                        new ParallelSearchThreadParam()
+                        {
+                            TempList = tempTaskList,
+                            MaxDist = maxDistance,
+                            ThreadNum = i,
+                            WordPattern = currentWord
+                        });
                     tasks[i].Start();
                 }
                 Task.WaitAll(tasks);
@@ -217,6 +220,76 @@ namespace homework
             {
                 MessageBox.Show("Выберите файл и введите слово для поиска");
             }
+        }
+
+        private void ButtonSaveReport_Click(object sender, RoutedEventArgs e)
+        {
+            string TempReportFileName = "Report_" + DateTime.Now.ToString("dd_MM_yyyy_hhmmss");
+            SaveFileDialog fd = new SaveFileDialog
+            {
+                FileName = TempReportFileName,
+                DefaultExt = ".html",
+                Filter = "HTML Reports|*.html"
+            };
+            bool? result = fd.ShowDialog();
+            if (result == true)
+            {
+                string ReportFileName = fd.FileName;
+                StringBuilder b = new StringBuilder();
+                b.AppendLine("<html>");
+                b.AppendLine("<head>");
+                b.AppendLine("<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'/>");
+                b.AppendLine("<title>" + "Отчет: " + ReportFileName + "</title>");
+                b.AppendLine("</head>");
+                b.AppendLine("<body>");
+                b.AppendLine("<h1>" + "Отчет: " + ReportFileName + "</h1>");
+                b.AppendLine("<table border='1'>");
+                b.AppendLine("<tr>");
+                b.AppendLine("<td>Время чтения из файла</td>");
+                b.AppendLine("<td>" + LabelTimer.Content + "</td>");
+                b.AppendLine("</tr>");
+                b.AppendLine("<tr>");
+                b.AppendLine("<td>Количество уникальных слов в файле</td>");
+                b.AppendLine("<td>" + LabelCountWords.Content + "</td>");
+                b.AppendLine("</tr>");
+                b.AppendLine("<tr>");
+                b.AppendLine("<td>Слово для поиска</td>");
+                b.AppendLine("<td>" + TextBoxCurrentWord.Text + "</td>");
+                b.AppendLine("</tr>");
+                b.AppendLine("<tr>");
+                b.AppendLine("<td>Максимальное расстояние для нечеткого поиска</td>");
+                b.AppendLine("<td>" + TextBoxMaxDistance.Text + "</td>");
+                b.AppendLine("</tr>");
+                b.AppendLine("<tr>");
+                b.AppendLine("<td>Время четкого поиска</td>");
+                b.AppendLine("<td>" + LabelTimeSearch.Content + "</td>");
+                b.AppendLine("</tr>");
+                b.AppendLine("<tr>");
+                b.AppendLine("<td>Время нечеткого поиска</td>");
+                b.AppendLine("<td>" + LabelTimeCalc.Content + "</td>");
+                b.AppendLine("</tr>");
+                b.AppendLine("<tr valign='top'>");
+                b.AppendLine("<td>Результаты поиска</td>");
+                b.AppendLine("<td>");
+                b.AppendLine("<ul>");
+                foreach (var x in ListBoxResult.Items)
+                {
+                    b.AppendLine("<li>" + x.ToString() + "</li>");
+                }
+                b.AppendLine("</ul>");
+                b.AppendLine("</td>");
+                b.AppendLine("</tr>");
+                b.AppendLine("</table>");
+                b.AppendLine("</body>");
+                b.AppendLine("</html>");
+                File.AppendAllText(ReportFileName, b.ToString());
+                MessageBox.Show("Отчет сформирован. Файл: " + ReportFileName);
+            }
+        }
+
+        private void ButtonExit_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 }
